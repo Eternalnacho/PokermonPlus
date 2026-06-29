@@ -2,7 +2,7 @@ local darkrai = {
   name = "darkrai",
   config = { extra = {} },
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     info_queue[#info_queue + 1] = { set = 'Spectral', key = 'c_poke_nightmare' }
   end,
   designer = "Sonfive",
@@ -13,7 +13,7 @@ local darkrai = {
   gen = 4,
   blueprint_compat = false,
   add_to_deck = function(self, card, from_debuff)
-    if not from_debuff then
+    if not from_debuff and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
       local _card = SMODS.add_card({key = 'c_poke_nightmare', area = G.consumeables})
       SMODS.calculate_effect({ message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral }, _card)
     end
@@ -60,7 +60,7 @@ local mega_darkrai = {
   name = "mega_darkrai",
   config = { extra = { Xmult_multi = 1 } },
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     return { vars = { card.ability.extra.Xmult_multi } }
   end,
   designer = "Sonfive",
