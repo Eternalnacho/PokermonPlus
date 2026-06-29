@@ -15,6 +15,7 @@ SMODS.current_mod.set_debuff = function(card)
 end
 
 -- copy of `is_energizable` but for centers instead
+local energizable_vanilla = assert(SMODS.load_file("functions/energizable_vanilla.lua", "Pokermon"))()
 local is_center_energizable = function(center)
   if energizable_vanilla[center.name] then
     return true
